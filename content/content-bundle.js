@@ -203,7 +203,11 @@
             if (e) {
                 const a = e.tabContext,
                     n = document.getElementById(t.spaIframeId);
-                n && (a.selectionEnabled ? s.add(n.classList, t.spaIframeActiveClass) : s.remove(n.classList, t.spaIframeActiveClass))
+                n && (a.selectionEnabled ? s.add(n.classList, t.spaIframeActiveClass) : s.remove(n.classList, t.spaIframeActiveClass));
+
+                this.selected && (this.selected.forEach((e => {
+                    e.restore && e.restore()
+                })), this.selected = null);
             }
         }
         selectItems(e, a) {
@@ -380,7 +384,7 @@
     }
     class u {
         constructor() {
-            this.storeName = "settings", this.dbName = "greeked-and-blurred", this.dbVersion = 1
+            this.storeName = "settings", this.dbName = "greeked-and-blurred-custom", this.dbVersion = 1
         }
         openDb() {
             return new Promise(((e, t) => {
