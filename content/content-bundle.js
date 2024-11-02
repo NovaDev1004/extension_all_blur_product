@@ -384,7 +384,7 @@
     }
     class u {
         constructor() {
-            this.storeName = "settings", this.dbName = "greeked-and-blurred-custom", this.dbVersion = 1
+            this.storeName = "settings", this.dbName = "greeked-and-blurred", this.dbVersion = 1
         }
         openDb() {
             return new Promise(((e, t) => {
@@ -536,9 +536,11 @@
         };
         window.addEventListener("message", (r => {
             if (0 === i.indexOf(r.origin)) {
+                console.log("log start");
                 const i = r.data,
                     g = i.name;
                 let u = null;
+                console.log(g);
                 if (g === o.applySavedSettings) {
                     const e = i.settingsContext;
                     e && a.onSettings(e.settings)
@@ -566,6 +568,7 @@
                     }))
                 } else g === o.panelInitialized && e(void 0, void 0, void 0, (function*() {
                     const e = yield m.getCurrentSettingsAsync();
+                    console.log(e);
                     e && l.initializeSettings(e)
                 }));
                 const h = l.getExistedIframe();
