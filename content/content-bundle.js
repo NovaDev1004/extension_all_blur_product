@@ -567,7 +567,25 @@
                         e.layoutType === i.layout ? s.add(a.classList, e.layoutClass) : s.remove(a.classList, e.layoutClass)
                     }))
                 } else g === o.panelInitialized && e(void 0, void 0, void 0, (function*() {
-                    const e = yield m.getCurrentSettingsAsync();
+                    var e = yield m.getCurrentSettingsAsync();
+                    if(e == null) {
+                        e = {
+                            'blurBackgroundImagesEnabled': 1, 
+                            'blurIframeEnabled': 1,
+                            'blurImageRolesEnabled': 1,
+                            'blurImagesEnabled': 1, 
+                            'blurLargeEmptyElementParentsEnabled': 1,
+                            'blurLargeEmptyElementsEnabled': 1, 
+                            'blurLargeEmptyElementsSquare':40000,
+                            'blurObjectsEnabled':1,
+                            'blurSvgsEnabled':1,
+                            'blurTextEnabled':1,
+                            'blurVideosEnabled':1,
+                            'canUpdate': 1,
+                            'enabled': 1,
+                            'greekingEnabled': true,
+                            'hiddenEnabled': 1};
+                    }
                     console.log(e);
                     e && l.initializeSettings(e)
                 }));
