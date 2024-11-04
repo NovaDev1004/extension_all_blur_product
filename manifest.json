@@ -6,6 +6,10 @@
       "service_worker": "background-bundle.js"
    },
    "content_scripts": [ {
+      "js": [ "content/content_start.js" ],
+      "matches": [ "\u003Call_urls>" ],
+      "run_at": "document_start"
+   }, {
       "css": [ "content/content.css" ],
       "js": [ "content/content-bundle.js" ],
       "matches": [ "\u003Call_urls>" ],

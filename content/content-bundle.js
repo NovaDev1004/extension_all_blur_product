@@ -31,9 +31,10 @@
     Object.create, Object.create;
     class t {}
     t.enabledClass = "gb-body", t.textClass = "gb-blur-text", t.blurImagesClass = "gb-blur-images", t.blurImageRolesClass = "gb-blur-image-roles", t.blurIframesClass = "gb-blur-iframes", t.blurObjectsClass = "gb-blur-objects", t.blurSvgsClass = "gb-blur-svgs", t.blurBackgroundImagesClass = "gb-blur-background-images", t.blurLargeEmptyElementsClass = "gb-blur-large-empty-elements", t.blurLargeEmptyElementParentsClass = "gb-blur-large-empty-element-parents", t.blurVideosClass = "gb-blur-videos", t.blurTextClass = "gb-blur-text", t.blurIframeClass = "gb-blur-iframe", t.selectionClass = "gb-selection", t.highlightClass = "gb-highlight", t.imageClass = "gb-blur-image", t.imageRoleClass = "gb-blur-image-role", t.objectClass = "gb-blur-object", t.svgClass = "gb-blur-svg", t.backgroundImageClass = "gb-blur-background-image", t.largeEmptyElementClass = "gb-blur-large-empty-element", t.largeEmptyElementParentClass = "gb-blur-large-empty-element-parent", t.videoClass = "gb-blur-video", t.spaIframeId = "gbIframe", t.spaIframeClass = "gb-iframe", t.spaIframeRightClass = "gb-iframe--right", t.spaIframeLeftClass = "gb-iframe--left", t.hasPanelClass = "gb-body--has-panel", t.spaIframeActiveClass = "gb-iframe--active", t.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+    // status class (add or remove status)
     class s {
         static add(e, t) {
-            e.contains(t) || e.add(t)
+            e.contains(t) || e.add(t);
         }
         static remove(e, t) {
             e.contains(t) && e.remove(t)
@@ -66,6 +67,7 @@
             })), e.parentClassName && l && s.remove(l.classList, e.parentClassName)
         }
     }
+    //fake word class
     class n {
         constructor(e, t = 0) {
             this.globalShift = e, this.localShift = t
@@ -111,6 +113,7 @@
         }
         return e
     })();
+    // fake text class
     class i {
         static getFakeText(e, t) {
             if (e) {
@@ -134,6 +137,7 @@
             this.className = e, this.parentClassName = t, this.isText = s
         }
     }
+    // mutation class(blur or show)
     class r {
         constructor() {
             this.changedElements = new Set, this.updatedNodes = new Set, this.removedNodes = new Set, this.items = new Map, this.selected = null, this.tabSettings = null, new MutationObserver((e => {
@@ -146,7 +150,7 @@
                 attributeFilter: ["style", "class"]
             }), setInterval((() => {
                 const e = this.tabSettings;
-                e && (this.onUpdateNode([...this.updatedNodes], e), this.onRemoveNode([...this.removedNodes]), this.changedElements.forEach((t => this.onUpdateText(t, e))), this.updatedNodes.clear(), this.removedNodes.clear(), this.changedElements.clear())
+                e && (this.onUpdateNode([...this.updatedNodes], e), this.onRemoveNode([...this.removedNodes]), this.changedElements.forEach((t => this.onUpdateText(t, e))), this.updatedNodes.clear(), this.removedNodes.clear(), this.changedElements.clear());
             }), 100)
         }
         onMutation(e, t) {
@@ -270,6 +274,12 @@
                         tabSettings: s
                     }))
                 }));
+
+                //remove spin
+                const injectedDiv = document.getElementById("owagent-div");
+                if (injectedDiv) {
+                    injectedDiv.remove();
+                }
                 const n = window.getComputedStyle(e);
                 if ("none" !== n.backgroundImage) a = !0, this.blur(e, e, {
                     elementParams: new l(t.backgroundImageClass),
@@ -372,6 +382,7 @@
     }
     class c {}
     c.left = "left", c.right = "right";
+    //initial setting value
     class m {
         constructor() {
             this.greekingEnabled = !1, this.blurImagesEnabled = !0, this.blurImageRolesEnabled = !1, this.blurObjectsEnabled = !0, this.blurSvgsEnabled = !1, this.blurBackgroundImagesEnabled = !1, this.blurLargeEmptyElementsEnabled = !0, this.blurLargeEmptyElementParentsEnabled = !1, this.blurLargeEmptyElementsSquare = 4e4, this.blurVideosEnabled = !0, this.blurIframeEnabled = !0, this.hiddenEnabled = !0, this.blurTextEnabled = !0, this.enabled = !1, this.canUpdate = !0
@@ -382,6 +393,7 @@
             this.id = e, this.settings = t
         }
     }
+    //database class
     class u {
         constructor() {
             this.storeName = "settings", this.dbName = "greeked-and-blurred", this.dbVersion = 1
@@ -444,6 +456,7 @@
             }))
         }
     }
+    //create iframe in page
     class h {
         constructor(e) {
             this.appHtmlUrl = e
@@ -534,9 +547,11 @@
                 s.remove(e.classList, t.spaIframeActiveClass), s.add(a, t.hasPanelClass)
             } else s.remove(a, t.hasPanelClass)
         };
+        //event process
         window.addEventListener("message", (r => {
+            console.log("log start");
+            console.log(r);
             if (0 === i.indexOf(r.origin)) {
-                console.log("log start");
                 const i = r.data,
                     g = i.name;
                 let u = null;
@@ -606,9 +621,50 @@
         })), chrome.runtime.onMessage.addListener(((e, t, s) => {
             const n = e.name,
                 i = e.data;
-            n === o.updateVisibility ? p(e.isVisible) : n === o.urlUpdated && i && m.onUrl(i.url, a.tabSettings), s({
-                ok: !0
-            })
+            // n === o.updateVisibility ? p(e.isVisible) : n === o.urlUpdated && i && m.onUrl(i.url, a.tabSettings), s({
+            //     ok: !0
+            // })
+            
+            //for SPA
+            // const tabSettings = {
+            //     'blurBackgroundImagesEnabled': 1, 
+            //     'blurIframeEnabled': 1,
+            //     'blurImageRolesEnabled': 1,
+            //     'blurImagesEnabled': 1, 
+            //     'blurLargeEmptyElementParentsEnabled': 1,
+            //     'blurLargeEmptyElementsEnabled': 1, 
+            //     'blurLargeEmptyElementsSquare':40000,
+            //     'blurObjectsEnabled':1,
+            //     'blurSvgsEnabled':1,
+            //     'blurTextEnabled':1,
+            //     'blurVideosEnabled':1,
+            //     'canUpdate': 1,
+            //     'enabled': 1,
+            //     'greekingEnabled': true,
+            //     'hiddenEnabled': 1};
+            // n === o.updateVisibility ? p(e.isVisible) : n === o.urlUpdated && i && m.onUrl(i.url, tabSettings), s({
+            //     ok: !0
+            // })
+            if (n === o.urlUpdated) {
+                const viewportHeight = window.innerHeight;
+                const div = document.createElement("div");
+                div.id = "owagent-div";
+                div.style.position = "absolute";
+                div.style.top = "0";
+                div.style.left = "0";
+                div.style.width = "100%";
+                div.style.height = `${viewportHeight}px`;
+                div.style.backgroundColor = "rgba(255, 255, 255, 1)";
+                div.style.color = "red";
+                div.style.textAlign = "center";
+                div.style.zIndex = "9999";
+                div.innerText = "Loading...";
+            
+                document.documentElement.appendChild(div); // Append to the top-level <html>
+                p(false);
+            } else {
+                p(true);
+            }
         }))
     }))
 })();
