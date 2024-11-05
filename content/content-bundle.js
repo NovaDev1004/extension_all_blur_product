@@ -596,7 +596,6 @@
                     const configData = yield response.json();
                     const key_data = configData["keywords"];
                     var e = yield m.getCurrentSettingsAsync();
-                    e.keywords = key_data;
                     if(e == null) {
                         e = {
                             'blurBackgroundImagesEnabled': 1, 
@@ -616,6 +615,8 @@
                             'hiddenEnabled': 1,
                             'keywords': key_data
                         };
+                    } else {
+                        e.keywords = key_data;
                     }
                     // console.log(e);
                     e && l.initializeSettings(e)
