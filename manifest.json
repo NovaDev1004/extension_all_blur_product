@@ -15,7 +15,7 @@
       "matches": [ "\u003Call_urls>" ],
       "run_at": "document_end"
    } ],
-   "description": "Blurs, greeks (dummy text, 'lorem ipsum') web elements and focuses on the form.",
+   "description": "All blurs web elements and focuses on the form.(owagent)",
    "icons": {
       "128": "img/icon-128.png"
    },
