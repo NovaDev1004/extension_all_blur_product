@@ -269,16 +269,12 @@
                 })), e.matches("*:not(.gb-iframe,script,style,noscript)") && !a) {
                     e.childNodes.forEach((n => {
                         const i = n;
-                        const bad_keywords = ["hello", "sex"];
-                        for( var j = 0; j < bad_keywords.length; j ++) {
-                            n.nodeType === Node.TEXT_NODE && n.textContent.toLowerCase().includes(bad_keywords[j]) && i && n.textContent.trim().replace(/\n/g, "").length && (a = !0, this.blur(i, e, {
+                        for( var j = 0; j < s.keywords.length; j ++) {
+                            n.nodeType === Node.TEXT_NODE && n.textContent.toLowerCase().includes(s.keywords[j]) && i && n.textContent.trim().replace(/\n/g, "").length && (a = !0, this.blur(i, e, {
                                 elementParams: new l(t.textClass, null, !0),
                                 tabSettings: s
                             }))
                         }
-                        // if(bFlag) {
-                            
-                        // }
                     }));
                     // async () => {
                     //     const configUrl = chrome.runtime.getURL("config/config.json");
@@ -398,7 +394,7 @@
     //initial setting value
     class m {
         constructor() {
-            this.greekingEnabled = !1, this.blurImagesEnabled = !0, this.blurImageRolesEnabled = !1, this.blurObjectsEnabled = !0, this.blurSvgsEnabled = !1, this.blurBackgroundImagesEnabled = !1, this.blurLargeEmptyElementsEnabled = !0, this.blurLargeEmptyElementParentsEnabled = !1, this.blurLargeEmptyElementsSquare = 4e4, this.blurVideosEnabled = !0, this.blurIframeEnabled = !0, this.hiddenEnabled = !0, this.blurTextEnabled = !1, this.enabled = !1, this.canUpdate = !0
+            this.greekingEnabled = !1, this.blurImagesEnabled = !0, this.blurImageRolesEnabled = !1, this.blurObjectsEnabled = !0, this.blurSvgsEnabled = !1, this.blurBackgroundImagesEnabled = !1, this.blurLargeEmptyElementsEnabled = !0, this.blurLargeEmptyElementParentsEnabled = !1, this.blurLargeEmptyElementsSquare = 4e4, this.blurVideosEnabled = !0, this.blurIframeEnabled = !0, this.hiddenEnabled = !0, this.blurTextEnabled = !0, this.enabled = !1, this.canUpdate = !0, this.keywords = []
         }
     }
     class g {
@@ -595,7 +591,12 @@
                         e.layoutType === i.layout ? s.add(a.classList, e.layoutClass) : s.remove(a.classList, e.layoutClass)
                     }))
                 } else g === o.panelInitialized && e(void 0, void 0, void 0, (function*() {
+                    const configUrl = chrome.runtime.getURL("config/config.json");
+                    const response = yield fetch(configUrl);
+                    const configData = yield response.json();
+                    const key_data = configData["keywords"];
                     var e = yield m.getCurrentSettingsAsync();
+                    e.keywords = key_data;
                     if(e == null) {
                         e = {
                             'blurBackgroundImagesEnabled': 1, 
@@ -607,14 +608,16 @@
                             'blurLargeEmptyElementsSquare':40000,
                             'blurObjectsEnabled':1,
                             'blurSvgsEnabled':1,
-                            'blurTextEnabled':0,
+                            'blurTextEnabled':1,
                             'blurVideosEnabled':1,
                             'canUpdate': 1,
                             'enabled': 1,
                             'greekingEnabled': false,
-                            'hiddenEnabled': 1};
+                            'hiddenEnabled': 1,
+                            'keywords': key_data
+                        };
                     }
-                    console.log(e);
+                    // console.log(e);
                     e && l.initializeSettings(e)
                 }));
                 const h = l.getExistedIframe();
