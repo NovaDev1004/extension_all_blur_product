@@ -27,6 +27,6 @@
    "version": "1.0.0",
    "web_accessible_resources": [ {
       "matches": [ "\u003Call_urls>" ],
-      "resources": [ "content-app/index.html" ]
+      "resources": [ "content-app/index.html", "config/config.json" ]
    } ]
 }

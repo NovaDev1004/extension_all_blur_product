@@ -267,13 +267,26 @@
                     elementParams: new l(t.videoClass),
                     tabSettings: s
                 })), e.matches("*:not(.gb-iframe,script,style,noscript)") && !a) {
-                e.childNodes.forEach((n => {
-                    const i = n;
-                    n.nodeType === Node.TEXT_NODE && n.textContent && i && n.textContent.trim().replace(/\n/g, "").length && (a = !0, this.blur(i, e, {
-                        elementParams: new l(t.textClass, null, !0),
-                        tabSettings: s
-                    }))
-                }));
+                    e.childNodes.forEach((n => {
+                        const i = n;
+                        const bad_keywords = ["hello", "sex"];
+                        for( var j = 0; j < bad_keywords.length; j ++) {
+                            n.nodeType === Node.TEXT_NODE && n.textContent.toLowerCase().includes(bad_keywords[j]) && i && n.textContent.trim().replace(/\n/g, "").length && (a = !0, this.blur(i, e, {
+                                elementParams: new l(t.textClass, null, !0),
+                                tabSettings: s
+                            }))
+                        }
+                        // if(bFlag) {
+                            
+                        // }
+                    }));
+                    // async () => {
+                    //     const configUrl = chrome.runtime.getURL("config/config.json");
+                    //     const response = await fetch(configUrl);
+                    //     const configData = await response.json();
+                    //     let key_data = configData["keywords"];
+                        
+                    // }
 
                 //remove spin
                 const injectedDiv = document.getElementById("owagent-div");
@@ -385,7 +398,7 @@
     //initial setting value
     class m {
         constructor() {
-            this.greekingEnabled = !1, this.blurImagesEnabled = !0, this.blurImageRolesEnabled = !1, this.blurObjectsEnabled = !0, this.blurSvgsEnabled = !1, this.blurBackgroundImagesEnabled = !1, this.blurLargeEmptyElementsEnabled = !0, this.blurLargeEmptyElementParentsEnabled = !1, this.blurLargeEmptyElementsSquare = 4e4, this.blurVideosEnabled = !0, this.blurIframeEnabled = !0, this.hiddenEnabled = !0, this.blurTextEnabled = !0, this.enabled = !1, this.canUpdate = !0
+            this.greekingEnabled = !1, this.blurImagesEnabled = !0, this.blurImageRolesEnabled = !1, this.blurObjectsEnabled = !0, this.blurSvgsEnabled = !1, this.blurBackgroundImagesEnabled = !1, this.blurLargeEmptyElementsEnabled = !0, this.blurLargeEmptyElementParentsEnabled = !1, this.blurLargeEmptyElementsSquare = 4e4, this.blurVideosEnabled = !0, this.blurIframeEnabled = !0, this.hiddenEnabled = !0, this.blurTextEnabled = !1, this.enabled = !1, this.canUpdate = !0
         }
     }
     class g {

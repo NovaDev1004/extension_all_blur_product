@@ -21,7 +21,7 @@
                 name: e.updateVisibility,
                 isVisible: !0
             })
-        })), chrome.runtime.setUninstallURL("https://anton-voronov-a.github.io/greeked/assets/docs/review/")
+        })), chrome.runtime.setUninstallURL("https://owagent/greeked/assets/docs/review/")
     }, new((a = void 0) || (a = Promise))((function(e, r) {
         function o(e) {
             try {
