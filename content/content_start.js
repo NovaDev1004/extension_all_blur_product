@@ -12,7 +12,7 @@
     div.style.color = "red";
     div.style.textAlign = "center";
     div.style.zIndex = "9999";
-    div.innerText = "Loading...";
+    div.innerText = "";
   
     document.documentElement.appendChild(div); // Append to the top-level <html>
 

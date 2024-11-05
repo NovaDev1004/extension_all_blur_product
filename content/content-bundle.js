@@ -594,11 +594,11 @@
                             'blurLargeEmptyElementsSquare':40000,
                             'blurObjectsEnabled':1,
                             'blurSvgsEnabled':1,
-                            'blurTextEnabled':1,
+                            'blurTextEnabled':0,
                             'blurVideosEnabled':1,
                             'canUpdate': 1,
                             'enabled': 1,
-                            'greekingEnabled': true,
+                            'greekingEnabled': false,
                             'hiddenEnabled': 1};
                     }
                     console.log(e);
@@ -645,7 +645,7 @@
             // n === o.updateVisibility ? p(e.isVisible) : n === o.urlUpdated && i && m.onUrl(i.url, tabSettings), s({
             //     ok: !0
             // })
-            if (n === o.urlUpdated) {
+            // if (n === o.urlUpdated) {
                 const viewportHeight = window.innerHeight;
                 const div = document.createElement("div");
                 div.id = "owagent-div";
@@ -658,13 +658,16 @@
                 div.style.color = "red";
                 div.style.textAlign = "center";
                 div.style.zIndex = "9999";
-                div.innerText = "Loading...";
+                div.innerText = "";
             
                 document.documentElement.appendChild(div); // Append to the top-level <html>
-                p(false);
-            } else {
-                p(true);
-            }
+                // p(true);
+                if(n === o.updateVisibility) {
+                    p(e.isVisible);
+                }
+            // } else {
+            //     p(true);
+            // }
         }))
     }))
 })();
