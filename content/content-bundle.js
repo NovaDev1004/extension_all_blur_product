@@ -549,13 +549,13 @@
         };
         //event process
         window.addEventListener("message", (r => {
-            console.log("log start");
-            console.log(r);
+            // console.log("log start");
+            // console.log(r);
             if (0 === i.indexOf(r.origin)) {
                 const i = r.data,
                     g = i.name;
                 let u = null;
-                console.log(g);
+                // console.log(g);
                 if (g === o.applySavedSettings) {
                     const e = i.settingsContext;
                     e && a.onSettings(e.settings)
