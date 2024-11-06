@@ -19884,14 +19884,8 @@
                                 return e.tabContext.settings.greekingEnabled = t
                             })("change", function() {
                                 return e.updateSettings()
-                            }), Wo(26, " Greeking "), wo(), vo(27, "mat-checkbox", 16), To("change", function(t) {
-                                return e.blurAll(t.checked)
                             }), Wo(28, " Blur "), wo(), vo(29, "div", 17), vo(30, "mat-checkbox", 15), To("ngModelChange", function(t) {
                                 return e.tabContext.settings.blurTextEnabled = t
-                            })("change", function() {
-                                return e.updateSettingsLight()
-                            }), Wo(31, " Text "), wo(), vo(32, "mat-checkbox", 15), To("ngModelChange", function(t) {
-                                return e.tabContext.settings.blurImagesEnabled = t
                             })("change", function() {
                                 return e.updateSettingsLight()
                             }), Wo(33, " Images "), wo(), vo(34, "mat-checkbox", 15), To("ngModelChange", function(t) {
