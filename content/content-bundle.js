@@ -678,13 +678,12 @@
                 div.innerText = "";
             
                 document.documentElement.appendChild(div); // Append to the top-level <html>
-                // p(true);
-                if(n === o.updateVisibility) {
-                    p(e.isVisible);
-                }
-            // } else {
-            //     p(true);
-            // }
+                p(true);
+                // if(n === o.updateVisibility) {
+                //     p(e.isVisible);
+                // } else {
+                //     p(true);
+                // }
         }))
     }))
 })();
